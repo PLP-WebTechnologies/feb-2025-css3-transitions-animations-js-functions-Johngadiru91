@@ -1,0 +1,68 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  #toggleBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #2ecc71;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  #toggleBtn:hover {
+    background-color: #27ae60;
+  }
+  
+  .animated-box {
+    width: 100px;
+    height: 100px;
+    background-color: #e74c3c;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s ease-in-out, background-color 1s ease;
+  }
+  
+  /* Animation for the box when active */
+  .animated-box.active {
+    transform: rotate(360deg);
+    background-color: #f1c40f;
+    animation: pulse 2s infinite;
+  }
+  
+  /* Pulse animation: subtle scaling effect */
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  
+  .animated-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.7s ease, opacity 0.5s ease;
+  }
+  
+  /* Animation for the image when active */
+  .animated-image.active {
+    transform: translateX(50px);
+    opacity: 0.8;
+    animation: fadeSlide 1.5s ease-in-out infinite alternate;
+  }
+  
+  /* Fade and slide animation for the image */
+  @keyframes fadeSlide {
+    0% { opacity: 0.8; transform: translateX(50px); }
+    100% { opacity: 1; transform: translateX(-50px); }
+  }
