@@ -1,30 +1,42 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const toggleBtn = document.getElementById('toggleBtn');
-    const animatedBox = document.getElementById('animatedBox');
-    const animatedImage = document.getElementById('animatedImage');
-  
-    // Load animation states from localStorage
-    const isBoxAnimationEnabled = localStorage.getItem('boxAnimationEnabled') === 'true';
-    const isImageAnimationEnabled = localStorage.getItem('imageAnimationEnabled') === 'true';
-  
-    // Apply initial states
-    if (isBoxAnimationEnabled) {
-      animatedBox.classList.add('active');
+// Image Slider
+const slides = document.querySelectorAll('.slides img');
+if (slides.length > 0) {
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
     }
-    if (isImageAnimationEnabled) {
-      animatedImage.classList.add('active');
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
     }
-  
-    // Toggle animations on button click
-    toggleBtn.addEventListener('click', () => {
-      // Toggle box animation
-      animatedBox.classList.toggle('active');
-      const isBoxActive = animatedBox.classList.contains('active');
-      localStorage.setItem('boxAnimationEnabled', isBoxActive);
-  
-      // Toggle image animation
-      animatedImage.classList.toggle('active');
-      const isImageActive = animatedImage.classList.contains('active');
-      localStorage.setItem('imageAnimationEnabled', isImageActive);
+
+    showSlide(currentSlide);
+    setInterval(nextSlide, 3000); // Change slide every 3 seconds
+}
+
+// Form Validation
+const form = document.getElementById('contact-form');
+const formMessage = document.getElementById('form-message');
+
+if (form) {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (name && email && message) {
+            formMessage.textContent = 'Form submitted successfully!';
+            formMessage.style.color = 'green';
+            form.reset();
+        } else {
+            formMessage.textContent = 'Please fill in all fields.';
+            formMessage.style.color = 'red';
+        }
     });
-  });
+}
